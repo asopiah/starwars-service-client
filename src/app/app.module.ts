@@ -3,10 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {ClrIconModule} from "@clr/angular";
+import {ClrDatagridModule, ClrIconModule, ClrInputModule} from "@clr/angular";
 import { PeopleComponent } from './components/people/people.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,10 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     ClrIconModule,
     GraphQLModule,
-    HttpClientModule
+    HttpClientModule,
+    ClrDatagridModule,
+    FormsModule,
+    ClrInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
