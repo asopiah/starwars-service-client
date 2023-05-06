@@ -8,11 +8,13 @@ import { PeopleComponent } from './components/people/people.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from "@angular/forms";
+import {PersonComponent} from "./components/person/person.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    PeopleComponent
+    PeopleComponent,
+    PersonComponent
   ],
   imports: [
     BrowserModule,

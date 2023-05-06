@@ -30,6 +30,28 @@ export class PeopleService {
       );
   }
 
+  public getPerson(name: String): Observable<Person> {
+    return this.apollo.watchQuery<Query>({
+      query: gql`
+      query getPerson($name: String!) {
+          getPerson(name: $name) {
+            name
+            height
+            mass
+            gender
+            homeworld
+          }
+        }
+      `,
+      variables: {
+        name: name,
+      },
+    })
+      .valueChanges
+      .pipe(map(result => result.data["getPerson"])
+      );
+  }
+
 }
 
 

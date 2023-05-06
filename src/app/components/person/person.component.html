@@ -1,0 +1,27 @@
+<nav class="subnav">
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" [routerLink]="[' ']" aria-current="page">Person Detail View</a>
+    </li>
+  </ul>
+</nav>
+<div class="clr-row">
+  <div class="clr-col-lg-3 clr-col-12">
+    <div class="card">
+      <h3 class="card-header">{{(person | async)?.name}}</h3>
+      <div class="card-block">
+        <div class="card-media-block">
+          <img src=".." class="card-media-image">
+          <div class="card-media-description">
+            <span class="card-media-title">Gender: {{(person | async)?.gender}}</span>
+            <span class="card-media-text">Mass: {{(person | async)?.mass}}</span>
+            <span class="card-media-text">Height: {{(person | async)?.height}}</span>
+          </div>
+        </div>
+        <div class="card-text">
+          Home-World: <a >{{(person | async)?.homeworld}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
