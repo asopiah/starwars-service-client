@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {ClrIconModule} from "@clr/angular";
 import { PeopleComponent } from './components/people/people.component';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { PeopleComponent } from './components/people/people.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ClrIconModule
+    ClrIconModule,
+    GraphQLModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
