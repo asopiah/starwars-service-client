@@ -75,4 +75,25 @@ export class PeopleService {
       );
   }
 
+  public getPeopleForPage(page: number): Observable<Person[]> {
+    return this.apollo.watchQuery<Query>({
+      query: gql`
+      query getAllPeople($page: Int!) {
+          getAllPeople(page: $page) {
+            name
+            height
+            mass
+            gender
+            homeworld
+          }
+        }
+      `,
+      variables: {
+        page: page,
+      },
+    })
+      .valueChanges
+      .pipe(map(result => result.data["getAllPeople"])
+      );
+  }
 }
