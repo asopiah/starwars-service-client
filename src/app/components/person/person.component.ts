@@ -24,7 +24,7 @@ export class PersonComponent implements OnInit {
       console.log(params);
       this.name = params.get('name');
     });
-    this.person = this.peopleService.getPerson(this.name);
+    this.person = this.peopleService.searchPeople(this.name);
     this.person.subscribe(person => {
       console.log(person)
     })

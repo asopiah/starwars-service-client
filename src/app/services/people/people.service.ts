@@ -3,6 +3,7 @@ import {Apollo, Query} from "apollo-angular";
 import {map, Observable} from "rxjs";
 import {gql} from "@apollo/client/core";
 import {Person} from "../../models/person";
+import {getAllPeopleQuery, getPeopleForPageQuery, getPersonQuery, searchPersonQuery} from "../../utils/gql/queries";
 
 @Injectable({
   providedIn: 'root'
@@ -14,36 +15,16 @@ export class PeopleService {
 
   public getPeople(): Observable<Person[]> {
     return this.apollo.watchQuery<Query>({
-      query: gql`
-      query getAllPeople {
-          getAllPeople {
-            name
-            height
-            mass
-            gender
-            homeworld
-          }
-        }
-      `
+      query: getAllPeopleQuery
     })
       .valueChanges
       .pipe(map(result => result.data["getAllPeople"])
       );
   }
 
-  public getPerson(name: String): Observable<Person> {
+  public searchPeople(name: String): Observable<Person> {
     return this.apollo.watchQuery<Query>({
-      query: gql`
-      query getPerson($name: String!) {
-          getPerson(name: $name) {
-            name
-            height
-            mass
-            gender
-            homeworld
-          }
-        }
-      `,
+      query: getPersonQuery,
       variables: {
         name: name,
       },
@@ -55,17 +36,7 @@ export class PeopleService {
 
   public searchPerson(name: String): Observable<Person[]> {
     return this.apollo.watchQuery<Query>({
-      query: gql`
-      query searchPerson($name: String!) {
-          searchPerson(name: $name) {
-            name
-            height
-            mass
-            gender
-            homeworld
-          }
-        }
-      `,
+      query: searchPersonQuery,
       variables: {
         name: name,
       },
@@ -77,17 +48,7 @@ export class PeopleService {
 
   public getPeopleForPage(page: number): Observable<Person[]> {
     return this.apollo.watchQuery<Query>({
-      query: gql`
-      query getAllPeople($page: Int!) {
-          getAllPeople(page: $page) {
-            name
-            height
-            mass
-            gender
-            homeworld
-          }
-        }
-      `,
+      query: getPeopleForPageQuery,
       variables: {
         page: page,
       },
