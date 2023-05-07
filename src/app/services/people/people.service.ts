@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Apollo, Query} from "apollo-angular";
 import {map, Observable} from "rxjs";
 import {gql} from "@apollo/client/core";
@@ -9,7 +9,8 @@ import {Person} from "../../models/person";
 })
 export class PeopleService {
 
-  constructor(private apollo:Apollo) { }
+  constructor(private apollo: Apollo) {
+  }
 
   public getPeople(): Observable<Person[]> {
     return this.apollo.watchQuery<Query>({
@@ -52,7 +53,26 @@ export class PeopleService {
       );
   }
 
+  public searchPerson(name: String): Observable<Person[]> {
+    return this.apollo.watchQuery<Query>({
+      query: gql`
+      query searchPerson($name: String!) {
+          searchPerson(name: $name) {
+            name
+            height
+            mass
+            gender
+            homeworld
+          }
+        }
+      `,
+      variables: {
+        name: name,
+      },
+    })
+      .valueChanges
+      .pipe(map(result => result.data["searchPerson"])
+      );
+  }
+
 }
-
-
-

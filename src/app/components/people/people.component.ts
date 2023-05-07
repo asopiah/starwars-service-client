@@ -11,12 +11,17 @@ import {PeopleService} from "../../services/people/people.service";
 export class PeopleComponent implements OnInit{
 
   people: Observable<Person[]>
+  searchName: string
 
   constructor(private peopleService: PeopleService) {
   }
 
   ngOnInit(): void {
     this.people = this.peopleService.getPeople();
+  }
+
+  onSearch(): void {
+    this.people = this.peopleService.searchPerson(this.searchName)
   }
 
 }
