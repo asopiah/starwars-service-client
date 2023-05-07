@@ -16,9 +16,6 @@
       </div>
     </form>
   </div>
-  <div class="clr-col-2">
-    <button class="btn btn-outline btn-sm" >Next Page</button>
-  </div>
 </div>
 <clr-datagrid>
   <clr-dg-column>Name</clr-dg-column>
@@ -43,6 +40,7 @@
       {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{ pagination.totalItems }} People
     </clr-dg-pagination>-->
     <button (click)="previousPage()" class="btn btn btn-info btn-sm float-right">Previous</button>
+    <div class="current-page">{{currentPage}}</div>
     <button (click)="nextPage()" class="btn btn btn-info btn-sm float-left">Next</button>
   </clr-dg-footer>
 </clr-datagrid>
