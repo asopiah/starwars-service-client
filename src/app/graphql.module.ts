@@ -3,8 +3,9 @@ import {ApolloModule, APOLLO_OPTIONS} from 'apollo-angular';
 import {ApolloClientOptions, ApolloLink, InMemoryCache, RequestHandler} from '@apollo/client/core';
 import {HttpLink} from 'apollo-angular/http';
 import {setContext} from "@apollo/client/link/context";
+import {environment} from "../environments/environment.development";
 
-const uri = 'http://localhost:8080/graphql'; // <-- add the URL of the GraphQL server here
+const uri = environment.apiUrl; // <-- add the URL of the GraphQL server here
 
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   const auth: ApolloLink = setContext((operation, context) => {
